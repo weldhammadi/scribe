@@ -5,6 +5,7 @@ from datetime import date
 import config
 from transcription import Transcriber
 from summary import Summarizer
+from moderator import Moderator
 
 
 def main() -> None:
@@ -18,8 +19,15 @@ def main() -> None:
         print("Transcription en cours...")
         transcript_agent = Transcriber()
         transcription=transcript_agent.transcribe(args.audio_path)
-        
-        
+
+        print("Vérification du contenu en cours...")
+        moderator_agent = Moderator()
+        if not moderator_agent.is_legitimate(transcription):
+            sys.exit(
+                "Scribe ne peut pas traiter cet enregistrement : son contenu ressemble à une "
+                "tentative de détournement de l'outil plutôt qu'à un contenu à résumer."
+            )
+
         print("Rédaction du compte rendu en cours...")
         summarizer_agent = Summarizer()
         report = summarizer_agent.generate_report(transcription)
