@@ -24,6 +24,7 @@ class Transcriber:
         except APIError as exc:
             raise RuntimeError(f"Échec de la transcription (API Groq) : {exc}") from exc
 
+        self.language = transcription.language
         return transcription.text
 
 
