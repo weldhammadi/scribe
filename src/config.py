@@ -10,7 +10,7 @@ load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 STT_MODEL = "whisper-large-v3-turbo"
-STT_LANGUAGE = "fr"
+#STT_LANGUAGE = "fr"
 
 LLM_MODEL = "llama-3.3-70b-versatile"
 LLM_TEMPERATURE = 0.2

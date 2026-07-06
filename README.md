@@ -52,7 +52,7 @@ Choix retenu :
 
 **Q3 — Que renvoie exactement l'API en plus du texte (langue détectée, segments, horodatage...) ? Qu'est-ce qui pourrait être utile pour une évolution future de Scribe ?**
 
-Avec `response_format="verbose_json"`, l'API renvoie, en plus de `text` : la langue détectée, la durée audio, et une liste de segments (texte + horodatage début/fin de chaque prise de parole) ; des horodatages au mot près sont aussi disponibles via `timestamp_granularities=["word"]`. Utile pour une évolution future : relier chaque point clé/décision du compte rendu à l'instant exact de l'enregistrement, ou détecter automatiquement la langue plutôt que de la figer en dur.
+Avec `response_format="verbose_json"`, l'API renvoie, en plus de `text` : la langue détectée, la durée audio, et une liste de segments (texte + horodatage début/fin de chaque prise de parole). les horodatages sont utile pour une évolution future : relier chaque point clé/décision du compte rendu à l'instant exact de l'enregistrement, ou détecter automatiquement la langue plutôt que de la figer en dur.
 
 **Q4 — Quelle température choisissez-vous pour cet usage, et pourquoi ?**
 
