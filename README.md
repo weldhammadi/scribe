@@ -25,7 +25,23 @@ Copiez `.env.example` en `.env` et renseignez-y votre clé API Groq (voir [conso
 python src/cli.py chemin/vers/audio.wav
 ```
 
-*(section à compléter à l'étape feature/cli avec un exemple complet)*
+Exemple complet :
+
+```bash
+python src/cli.py audio_samples/exemple_30s.wav
+```
+
+```
+Transcription en cours...
+Rédaction du compte rendu en cours...
+
+# Titre du compte rendu
+...
+
+Compte rendu enregistré dans compte_rendu_2026-07-06.md
+```
+
+Le compte rendu s'affiche à l'écran et est sauvegardé dans un fichier Markdown daté (`compte_rendu_<date>.md`) à la racine du projet.
 
 ## Structure du projet
 
