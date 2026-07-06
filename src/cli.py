@@ -9,6 +9,7 @@ from transcription import Transcriber
 from summary import Summarizer
 from moderator import Moderator
 from speaker import Speaker
+from chat import ChatAgent
 
 
 LABELS = {
@@ -67,6 +68,17 @@ def main() -> None:
     audio_path = f"compte_rendu_{date_str}.wav"
     Speaker().speak(report, audio_path)
     os.startfile(audio_path)
+
+    print("\nPose tes questions sur le compte rendu (tape 'quit' pour terminer).")
+    chat_agent = ChatAgent(report)
+    while True:
+        question = input("> ")
+        if question.strip().lower() in ("quit", "exit", "q"):
+            break
+        try:
+            print(chat_agent.ask(question))
+        except RuntimeError as exc:
+            print(exc)
 
 
 if __name__ == "__main__":
