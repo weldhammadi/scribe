@@ -19,6 +19,7 @@ class Summarizer:
                 model=config.LLM_MODEL,
                 temperature=config.LLM_TEMPERATURE,
                 max_completion_tokens=config.LLM_MAX_TOKENS,
+                response_format={"type": "json_object"},
             )
         except APIError as exc:
             raise RuntimeError(f"Échec de la génération du compte rendu (API Groq) : {exc}") from exc
