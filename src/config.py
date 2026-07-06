@@ -16,7 +16,14 @@ LLM_MODEL = "llama-3.3-70b-versatile"
 LLM_TEMPERATURE = 0.2
 LLM_MAX_TOKENS = 1024
 
+MODERATION_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
+
+TTS_MODEL = "canopylabs/orpheus-v1-english"
+TTS_VOICE = "troy"
+TTS_RESPONSE_FORMAT = "wav"
+
 SYSTEM_PROMPT_PATH = Path(__file__).resolve().parent.parent / "prompts" / "system_prompt.txt"
+MODERATOR_PROMPT_PATH = Path(__file__).resolve().parent.parent / "prompts" / "moderator_prompt.txt"
 
 
 def require_api_key() -> str:
