@@ -43,9 +43,12 @@ Git conserve l'historique complet de chaque fichier commité. Si `.env` est cré
 
 **Q2 — Quels modèles STT et LLM propose Groq aujourd'hui, et lesquels choisissez-vous ? Justifiez (qualité, vitesse, coût).**
 
-STT disponibles : `whisper-large-v3-turbo` (rapide, ~0,04 $/h, ~12 % d'erreur) et `whisper-large-v3` (plus précis, ~0,111 $/h, ~10,3 % d'erreur). LLM disponibles (extrait) : `llama-3.3-70b-versatile`, `llama-3.1-8b-instant`, `openai/gpt-oss-120b`/`20b`.
+STT disponibles : `whisper-large-v3-turbo` ( ~0,04 $/h, ~12 % d'erreur) et `whisper-large-v3` ( ~0,111 $/h, ~10,3 % d'erreur).
+LLM disponibles (extrait) : `llama-3.3-70b-versatile`, `llama-3.1-8b-instant`, `openai/gpt-oss-120b`/`20b`.
 
-Choix retenu : `whisper-large-v3-turbo` pour la transcription — la parole d'une réunion/cours est généralement claire, le gain de précision de `whisper-large-v3` ne justifie pas le surcoût pour cet usage. Et `llama-3.3-70b-versatile` pour le compte rendu — structurer un texte (titre, points clés, décisions) sans rien inventer demande une meilleure compréhension du contexte qu'un modèle 8B, ce qui justifie le coût/latence supplémentaire.
+Choix retenu : 
+`whisper-large-v3-turbo` pour la transcription, le gain de précision de `whisper-large-v3` ne justifie pas le surcoût pour cet usage.
+`llama-3.3-70b-versatile` pour le compte rendu, structurer un texte (titre, points clés, décisions) sans rien inventer demande une meilleure compréhension du contexte qu'un modèle 8B, ce qui justifie le coût/latence supplémentaire.
 
 **Q3 — Que renvoie exactement l'API en plus du texte (langue détectée, segments, horodatage...) ? Qu'est-ce qui pourrait être utile pour une évolution future de Scribe ?**
 
