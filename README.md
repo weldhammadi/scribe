@@ -56,7 +56,7 @@ Avec `response_format="verbose_json"`, l'API renvoie, en plus de `text` : la lan
 
 **Q4 — Quelle température choisissez-vous pour cet usage, et pourquoi ?**
 
-Une température basse (0,2) : la tâche est de l'extraction/reformulation fidèle, pas de la génération créative. Une température plus haute augmenterait le risque que le modèle invente une décision ou une action absente de la transcription, ce que l'énoncé interdit explicitement.
+Une température basse (0,2) : la tâche est de l'extraction, pas de la génération créative. Une température plus haute augmenterait le risque que le modèle invente une décision ou une action absente de la transcription, ce que l'énoncé interdit explicitement.
 
 **Q5 — Votre prompt système est envoyé à chaque requête : quel lien avec la notion de tokens en cache vue en cours ?**
 
