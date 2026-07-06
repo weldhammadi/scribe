@@ -1,4 +1,6 @@
 import argparse
+import json
+import os
 import sys
 from datetime import date
 
@@ -6,6 +8,22 @@ import config
 from transcription import Transcriber
 from summary import Summarizer
 from moderator import Moderator
+from speaker import Speaker
+
+
+LABELS = {
+    "fr": {"points": "Points clés", "decisions": "Décisions / actions"},
+    "en": {"points": "Key points", "decisions": "Decisions / actions"},
+}
+
+
+def format_report(data: dict, language: str = "fr") -> str:
+    labels = LABELS.get(language, LABELS["en"])
+    lines = [data["titre"], "", data["resume"], "", labels["points"]]
+    lines += [f"- {point}" for point in data["points_cles"]]
+    lines += ["", labels["decisions"]]
+    lines += [f"- {item}" for item in data["decisions_actions"]]
+    return "\n".join(lines)
 
 
 def main() -> None:
@@ -30,18 +48,25 @@ def main() -> None:
 
         print("Rédaction du compte rendu en cours...")
         summarizer_agent = Summarizer()
-        report = summarizer_agent.generate_report(transcription)
-        
-        
+        report_data = json.loads(
+            summarizer_agent.generate_report(transcription, language=transcript_agent.language)
+        )
+        report = format_report(report_data, language=transcript_agent.language)
     except (FileNotFoundError, RuntimeError) as exc:
         sys.exit(str(exc))
 
     print(report)
 
-    output_path = f"compte_rendu_{date.today().isoformat()}.md"
+    date_str = date.today().isoformat()
+    output_path = f"compte_rendu_{date_str}.md"
     with open(output_path, "w", encoding="utf-8") as output_file:
         output_file.write(report)
     print(f"Compte rendu enregistré dans {output_path}")
+
+    print("Lecture du compte rendu à voix haute...")
+    audio_path = f"compte_rendu_{date_str}.wav"
+    Speaker().speak(report, audio_path)
+    os.startfile(audio_path)
 
 
 if __name__ == "__main__":

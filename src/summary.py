@@ -7,14 +7,15 @@ class Summarizer:
     def __init__(self):
         self.client = config.get_client()
 
-    def generate_report(self, transcript: str) -> str:
+    def generate_report(self, transcript: str, language: str = None) -> str:
         system_prompt = config.SYSTEM_PROMPT_PATH.read_text(encoding="utf-8")
+        user_content = f"[Langue de la transcription : {language}]\n{transcript}" if language else transcript
 
         try:
             chat_completion = self.client.chat.completions.create(
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": transcript},
+                    {"role": "user", "content": user_content},
                 ],
                 model=config.LLM_MODEL,
                 temperature=config.LLM_TEMPERATURE,
